@@ -757,7 +757,7 @@ public class ServiceManager implements RecordListener<Service> {
      *
      * @param service   service
      * @param action    {@link UtilsAndCommons#UPDATE_INSTANCE_ACTION_REMOVE} or {@link UtilsAndCommons#UPDATE_INSTANCE_ACTION_ADD}
-     * @param ephemeral whether instance is ephemeral
+     * @param ephemeral whether instance is ephemeral 是否持久节点
      * @param ips       instances
      * @return instance list after operation
      * @throws NacosException nacos exception

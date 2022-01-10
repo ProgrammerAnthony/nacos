@@ -25,7 +25,7 @@ public interface NacosTask {
     
     /**
      * Judge Whether this nacos task should do.
-     *
+     * 是否执行
      * @return true means the nacos task should be done, otherwise false
      */
     boolean shouldProcess();

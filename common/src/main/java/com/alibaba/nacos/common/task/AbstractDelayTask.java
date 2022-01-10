@@ -18,7 +18,7 @@ package com.alibaba.nacos.common.task;
 
 /**
  * Abstract task which can delay and merge.
- *
+ * 封装异步任务和merge任务
  * @author huali
  * @author xiweng.yy
  */

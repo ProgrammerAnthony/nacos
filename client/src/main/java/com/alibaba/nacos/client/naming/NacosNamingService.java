@@ -46,7 +46,7 @@ import java.util.Properties;
 
 /**
  * Nacos Naming Service.
- *
+ * 提供同一的api
  * @author nkorange
  */
 @SuppressWarnings("PMD.ServiceOrDaoClassShouldEndWithImplRule")
@@ -126,6 +126,7 @@ public class NacosNamingService implements NamingService {
     @Override
     public void registerInstance(String serviceName, String groupName, String ip, int port, String clusterName)
             throws NacosException {
+        //instance主要关心就几个信息
         Instance instance = new Instance();
         instance.setIp(ip);
         instance.setPort(port);

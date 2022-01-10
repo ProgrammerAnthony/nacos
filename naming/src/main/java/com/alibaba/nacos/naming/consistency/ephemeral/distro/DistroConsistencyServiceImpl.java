@@ -58,7 +58,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * A consistency protocol algorithm called <b>Distro</b>
- *
+ * Distro是一个一致性协议，将数据分为多个分块，交给每个nacos server 处理
  * <p>Use a distro algorithm to divide data into many blocks. Each Nacos server node takes responsibility for exactly
  * one block of data. Each block of data is generated, removed and synchronized by its responsible server. So every
  * Nacos server only handles writings for a subset of the total service data.
@@ -130,7 +130,7 @@ public class DistroConsistencyServiceImpl implements EphemeralConsistencyService
     
     /**
      * Put a new record.
-     *
+     * 实例放入Datum中存入DataStore
      * @param key   key of record
      * @param value record
      */

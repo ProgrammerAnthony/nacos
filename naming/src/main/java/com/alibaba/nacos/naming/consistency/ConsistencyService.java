@@ -26,7 +26,7 @@ import java.util.Optional;
  *
  * <p>We announce this consistency service to decouple the specific consistency implementation with business logic.
  * User should not be aware of what consistency protocol is being used.
- *
+ *  用户不关心具体的持久化协议
  * <p>In this way, we also provide space for user to extend the underlying consistency protocols, as long as they obey
  * ourconsistency baseline.
  *
