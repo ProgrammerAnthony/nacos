@@ -104,7 +104,7 @@ public class DistroMapper extends MemberChangeListener {
     
     /**
      * Calculate which other server response input tag.
-     *
+     *  简单的hash算法，如果nacos某节点宕机，则所有的服务都会重新计算映射到新的节点，变动较多，如果能采用一致性hash算法，则单节点宕机，只转移该故障节点负责的服务。
      * @param responsibleTag responsible tag, serviceName for v1 and ip:port for v2
      * @return server which response input service
      */

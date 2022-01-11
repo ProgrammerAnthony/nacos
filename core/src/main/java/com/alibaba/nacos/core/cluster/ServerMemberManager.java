@@ -440,7 +440,8 @@ public class ServerMemberManager implements ApplicationListener<WebServerInitial
     public boolean isFirstIp() {
         return Objects.equals(serverList.firstKey(), this.localAddress);
     }
-    
+
+    //监听web server 变化事件
     @Override
     public void onApplicationEvent(WebServerInitializedEvent event) {
         String serverNamespace = event.getApplicationContext().getServerNamespace();

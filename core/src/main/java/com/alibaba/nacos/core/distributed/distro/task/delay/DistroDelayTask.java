@@ -22,7 +22,7 @@ import com.alibaba.nacos.core.distributed.distro.entity.DistroKey;
 
 /**
  * Distro delay task.
- *
+ * Distro延时任务
  * @author xiweng.yy
  */
 public class DistroDelayTask extends AbstractDelayTask {

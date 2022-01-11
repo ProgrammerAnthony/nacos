@@ -66,6 +66,7 @@ public class DistroDataStorageImpl implements DistroDataStorage {
     public DistroData getDistroData(DistroKey distroKey) {
         Map<String, Datum> result = new HashMap<>(2);
         if (distroKey instanceof DistroHttpCombinedKey) {
+            //从内存加载数据
             result = dataStore.batchGet(((DistroHttpCombinedKey) distroKey).getActualResourceTypes());
         } else {
             Datum datum = dataStore.get(distroKey.getResourceKey());

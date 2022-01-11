@@ -26,7 +26,7 @@ import com.alibaba.nacos.core.distributed.distro.task.execute.DistroSyncDeleteTa
 
 /**
  * Distro delay task processor.
- *
+ * Distro延迟任务处理器，可以学习Nacos的线程池管理方式
  * @author xiweng.yy
  */
 public class DistroDelayTaskProcessor implements NacosTaskProcessor {

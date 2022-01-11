@@ -20,7 +20,7 @@ import com.alibaba.nacos.naming.consistency.ConsistencyService;
 
 /**
  * A type of consistency for ephemeral data.
- *
+ * 一致性服务{@link DistroConsistencyServiceImpl}
  * <p>This kind of consistency is not required to store data on disk or database, because the ephemeral data always
  * keeps a session with server and as long as the session still lives the ephemeral data won't be lost.
  *

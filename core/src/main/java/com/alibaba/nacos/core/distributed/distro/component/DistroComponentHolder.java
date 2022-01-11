@@ -24,7 +24,7 @@ import java.util.Set;
 
 /**
  * Distro component holder.
- *
+ * 通过{@link DistroHttpRegistry}http注册器，管理所有相关资源，添加到{@link DistroComponentHolder}
  * @author xiweng.yy
  */
 @Component

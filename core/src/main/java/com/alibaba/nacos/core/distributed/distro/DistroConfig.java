@@ -21,7 +21,7 @@ import com.alibaba.nacos.sys.env.EnvUtil;
 
 /**
  * Distro configuration.
- *
+ * Distro相关配置
  * @author xiweng.yy
  */
 public class DistroConfig extends AbstractDynamicConfig {

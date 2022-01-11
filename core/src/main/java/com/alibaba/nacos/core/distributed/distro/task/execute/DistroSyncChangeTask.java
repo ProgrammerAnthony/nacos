@@ -49,6 +49,7 @@ public class DistroSyncChangeTask extends AbstractDistroExecuteTask {
             Loggers.DISTRO.warn("[DISTRO] {} with null data to sync, skip", toString());
             return true;
         }
+        //同步数据给指定的server（调用 DistroHttpAgent.syncData() 方法发送数据，调用 NamingProxy.syncData() 方法发送数据）
         return getDistroComponentHolder().findTransportAgent(type)
                 .syncData(distroData, getDistroKey().getTargetServer());
     }

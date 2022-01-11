@@ -51,6 +51,7 @@ public class DistroLoadDataTask implements Runnable {
     public DistroLoadDataTask(ServerMemberManager memberManager, DistroComponentHolder distroComponentHolder,
             DistroConfig distroConfig, DistroCallback loadCallback) {
         this.memberManager = memberManager;
+        //保存了数据存储对象
         this.distroComponentHolder = distroComponentHolder;
         this.distroConfig = distroConfig;
         this.loadCallback = loadCallback;
@@ -64,6 +65,7 @@ public class DistroLoadDataTask implements Runnable {
             if (!checkCompleted()) {
                 GlobalExecutor.submitLoadDataTask(this, distroConfig.getLoadDataRetryDelayMillis());
             } else {
+                //通过回调返回对应的数据成功、失败
                 loadCallback.onSuccess();
                 Loggers.DISTRO.info("[DISTRO-INIT] load snapshot data success");
             }
@@ -84,6 +86,7 @@ public class DistroLoadDataTask implements Runnable {
         }
         for (String each : distroComponentHolder.getDataStorageTypes()) {
             if (!loadCompletedMap.containsKey(each) || !loadCompletedMap.get(each)) {
+                //从远程机器同步所有的数据
                 loadCompletedMap.put(each, loadAllDataSnapshotFromRemote(each));
             }
         }

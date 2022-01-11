@@ -44,7 +44,7 @@ import org.springframework.stereotype.Component;
 public class DistroProtocol {
     
     private final ServerMemberManager memberManager;
-    
+    //发布延迟任务
     private final DistroComponentHolder distroComponentHolder;
     
     private final DistroTaskEngineHolder distroTaskEngineHolder;
@@ -58,7 +58,8 @@ public class DistroProtocol {
         this.distroTaskEngineHolder = distroTaskEngineHolder;
         startDistroTask();
     }
-    
+
+    //入口
     private void startDistroTask() {
         if (EnvUtil.getStandaloneMode()) {
             isInitialized = true;
@@ -80,6 +81,7 @@ public class DistroProtocol {
                 isInitialized = false;
             }
         };
+        //线程池处理，同步数据
         GlobalExecutor.submitLoadDataTask(
                 new DistroLoadDataTask(memberManager, distroComponentHolder, DistroConfig.getInstance(), loadCallback));
     }
@@ -96,7 +98,7 @@ public class DistroProtocol {
     
     /**
      * Start to sync by configured delay.
-     *
+     * 接收增量数据
      * @param distroKey distro key of sync data
      * @param action    the action of data operation
      */
@@ -106,7 +108,7 @@ public class DistroProtocol {
     
     /**
      * Start to sync data to all remote server.
-     *
+     * 接收增量数据，异步方式同步数据给其他服务
      * @param distroKey distro key of sync data
      * @param action    the action of data operation
      * @param delay     delay time for sync
@@ -170,6 +172,7 @@ public class DistroProtocol {
             Loggers.DISTRO.warn("[DISTRO] Can't find data process for received data {}", resourceType);
             return false;
         }
+        //任务投递的实际执行是processor
         return dataProcessor.processData(distroData);
     }
     

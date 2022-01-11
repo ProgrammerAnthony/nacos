@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * core module global executor.
- *
+ * 全局统一的线程池管理
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
  */
 @SuppressWarnings("all")

@@ -26,7 +26,7 @@ import com.alibaba.nacos.naming.consistency.KeyBuilder;
 
 /**
  * Distro combined key task failed handler.
- *
+ * 将失败的Distro任务重新投递为延迟任务
  * @author xiweng.yy
  */
 public class DistroHttpCombinedKeyTaskFailedHandler implements DistroFailedTaskHandler {

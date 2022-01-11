@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Store of data.
- *
+ * 数据存储底层结构为map
  * @author nkorange
  * @since 1.0.0
  */

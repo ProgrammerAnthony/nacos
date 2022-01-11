@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Distro record for monitor.
- *
+ * 监控Distro任务
  * @author xiweng.yy
  */
 public class DistroRecord {

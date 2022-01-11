@@ -32,7 +32,7 @@ import javax.annotation.PostConstruct;
 
 /**
  * Distro http registry.
- *
+ * http注册器，管理所有相关资源，添加到{@link DistroComponentHolder}
  * @author xiweng.yy
  */
 @Component
@@ -72,6 +72,7 @@ public class DistroHttpRegistry {
         componentHolder.registerDataStorage(KeyBuilder.INSTANCE_LIST_KEY_PREFIX,
                 new DistroDataStorageImpl(dataStore, distroMapper));
         componentHolder.registerTransportAgent(KeyBuilder.INSTANCE_LIST_KEY_PREFIX, new DistroHttpAgent(memberManager));
+        //DistroHttpCombinedKeyTaskFailedHandler将失败的Distro任务重新投递为延迟任务
         componentHolder.registerFailedTaskHandler(KeyBuilder.INSTANCE_LIST_KEY_PREFIX,
                 new DistroHttpCombinedKeyTaskFailedHandler(taskEngineHolder));
         taskEngineHolder.registerNacosTaskProcessor(KeyBuilder.INSTANCE_LIST_KEY_PREFIX,

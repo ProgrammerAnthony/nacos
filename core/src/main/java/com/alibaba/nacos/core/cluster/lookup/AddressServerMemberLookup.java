@@ -38,7 +38,7 @@ import java.util.Map;
 
 /**
  * Cluster member addressing mode for the address server.
- *
+ * 使用地址服务器存储节点信息，服务端节点定时拉取信息进行管理
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
  */
 public class AddressServerMemberLookup extends AbstractMemberLookup {
@@ -102,7 +102,8 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
     public boolean useAddressServer() {
         return true;
     }
-    
+
+    //获取地址服务器地址
     private void initAddressSys() {
         String envDomainName = System.getenv(ADDRESS_SERVER_DOMAIN_ENV);
         if (StringUtils.isBlank(envDomainName)) {
@@ -133,12 +134,13 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
     private void run() throws NacosException {
         // With the address server, you need to perform a synchronous member node pull at startup
         // Repeat three times, successfully jump out
+        //使用地址服务器，启东时执行同步成员节点拉取
         boolean success = false;
         Throwable ex = null;
         int maxRetry = EnvUtil.getProperty(ADDRESS_SERVER_RETRY_PROPERTY, Integer.class, DEFAULT_SERVER_RETRY_TIME);
         for (int i = 0; i < maxRetry; i++) {
             try {
-                syncFromAddressUrl();
+                syncFromAddressUrl();//异步拉取集群节点信息
                 success = true;
                 break;
             } catch (Throwable e) {
@@ -150,7 +152,7 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
             throw new NacosException(NacosException.SERVER_ERROR, ex);
         }
         
-        GlobalExecutor.scheduleByCommon(new AddressServerSyncTask(), DEFAULT_SYNC_TASK_DELAY_MS);
+        GlobalExecutor.scheduleByCommon(new AddressServerSyncTask(), DEFAULT_SYNC_TASK_DELAY_MS);//创建定时任务
     }
     
     @Override

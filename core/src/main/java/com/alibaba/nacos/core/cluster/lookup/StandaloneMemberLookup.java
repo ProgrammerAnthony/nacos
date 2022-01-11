@@ -25,7 +25,7 @@ import java.util.Collections;
 
 /**
  * Member node addressing mode in stand-alone mode.
- *
+ * 单机模式
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
  */
 public class StandaloneMemberLookup extends AbstractMemberLookup {

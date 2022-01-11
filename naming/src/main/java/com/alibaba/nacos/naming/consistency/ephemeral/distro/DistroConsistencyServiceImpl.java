@@ -113,6 +113,7 @@ public class DistroConsistencyServiceImpl implements EphemeralConsistencyService
         if (ApplicationUtils.getBean(UpgradeJudgement.class).isUseGrpcFeatures()) {
             return;
         }
+        //同步数据to all remote server
         distroProtocol.sync(new DistroKey(key, KeyBuilder.INSTANCE_LIST_KEY_PREFIX), DataOperation.CHANGE,
                 DistroConfig.getInstance().getSyncDelayMillis());
     }
@@ -242,16 +243,19 @@ public class DistroConsistencyServiceImpl implements EphemeralConsistencyService
     
     private boolean processData(byte[] data) throws Exception {
         if (data.length > 0) {
+            //从字节数据data中序列化出Instance数据（datumMap）
             Map<String, Datum<Instances>> datumMap = serializer.deserializeMap(data, Instances.class);
             
             for (Map.Entry<String, Datum<Instances>> entry : datumMap.entrySet()) {
+                //把数据存储到本地缓存dataMap
                 dataStore.put(entry.getKey(), entry.getValue());
-                
+                //监听器不包括key，就创建一个空的service，并且绑定监听器
                 if (!listeners.containsKey(entry.getKey())) {
                     // pretty sure the service not exist:
                     if (switchDomain.isDefaultInstanceEphemeral()) {
                         // create empty service
                         Loggers.DISTRO.info("creating service {}", entry.getKey());
+                        //创建一个空的service
                         Service service = new Service();
                         String serviceName = KeyBuilder.getServiceName(entry.getKey());
                         String namespaceId = KeyBuilder.getNamespace(entry.getKey());
@@ -288,7 +292,7 @@ public class DistroConsistencyServiceImpl implements EphemeralConsistencyService
                     Loggers.DISTRO.error("[NACOS-DISTRO] error while execute listener of key: {}", entry.getKey(), e);
                     continue;
                 }
-                
+                //监听器收到数据更新后，则更新data store
                 // Update data store if listener executed successfully:
                 dataStore.put(entry.getKey(), entry.getValue());
             }
@@ -324,6 +328,7 @@ public class DistroConsistencyServiceImpl implements EphemeralConsistencyService
     @Override
     public boolean processSnapshot(DistroData distroData) {
         try {
+            //触发保存逻辑
             return processData(distroData.getContent());
         } catch (Exception e) {
             return false;

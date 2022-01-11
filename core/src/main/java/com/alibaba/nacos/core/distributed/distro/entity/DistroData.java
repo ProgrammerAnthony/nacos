@@ -20,7 +20,7 @@ import com.alibaba.nacos.consistency.DataOperation;
 
 /**
  * Distro data.
- *
+ * Distro数据实体
  * @author xiweng.yy
  */
 public class DistroData {

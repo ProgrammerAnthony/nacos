@@ -18,7 +18,7 @@ package com.alibaba.nacos.consistency;
 
 /**
  * Apply action.
- *
+ * Distro任务包含的操作
  * @author nkorange
  */
 public enum DataOperation {

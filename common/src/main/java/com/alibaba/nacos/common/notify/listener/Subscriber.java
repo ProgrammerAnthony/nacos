@@ -22,7 +22,7 @@ import java.util.concurrent.Executor;
 
 /**
  * An abstract subscriber class for subscriber interface.
- *
+ * 订阅抽象类
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
  * @author zongtanghu
  */

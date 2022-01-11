@@ -33,7 +33,7 @@ import java.util.List;
 
 /**
  * Cluster.conf file managed cluster member node addressing pattern.
- *
+ * 文件模式FileConfigMemberLookup -- 利用监控cluster.conf文件的变动实现节点的管理
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
  */
 public class FileConfigMemberLookup extends AbstractMemberLookup {
